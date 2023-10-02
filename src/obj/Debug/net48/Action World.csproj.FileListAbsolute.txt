@@ -1,0 +1,9 @@
+C:\Users\miles\OneDrive\Documents\GitHub\actionworld\src\obj\Debug\net48\Action World.csproj.AssemblyReference.cache
+C:\Users\miles\OneDrive\Documents\GitHub\actionworld\src\obj\Debug\net48\Action World.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\miles\OneDrive\Documents\GitHub\actionworld\src\obj\Debug\net48\Action World.AssemblyInfoInputs.cache
+C:\Users\miles\OneDrive\Documents\GitHub\actionworld\src\obj\Debug\net48\Action World.AssemblyInfo.cs
+C:\Users\miles\OneDrive\Documents\GitHub\actionworld\src\obj\Debug\net48\Action World.csproj.CoreCompileInputs.cache
+C:\Users\miles\OneDrive\Documents\GitHub\actionworld\src\bin\Debug\net48\Action World.dll
+C:\Users\miles\OneDrive\Documents\GitHub\actionworld\src\bin\Debug\net48\Action World.pdb
+C:\Users\miles\OneDrive\Documents\GitHub\actionworld\src\obj\Debug\net48\Action World.dll
+C:\Users\miles\OneDrive\Documents\GitHub\actionworld\src\obj\Debug\net48\Action World.pdb
