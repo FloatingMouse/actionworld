@@ -1,6 +1,7 @@
 ﻿{
-	"id": "mills888.actionworld",
+	"id": "mills888Formallizard.actionworld",
 	"name": "Action world",
-	"version": "0.0.1",
-	"authors": "mills888"
+	"version": "2.0",
+	"authors": "Mills888 and Formal Lizard",
+	"description": "Upon entering any room, creatures will spawn, and the room cannot be exited until they are all slain."
 }

@@ -13,7 +13,7 @@ using Action_World;
 
 namespace Action_World
 {
-    [BepInPlugin("mills888.actionworld", "Action World", "1.3.0")]
+    [BepInPlugin("mills888Formallizard.actionworld", "Action world", "2.0")]
     public class Main : BaseUnityPlugin
     {
         Room lastRoom;
@@ -76,53 +76,16 @@ namespace Action_World
                 optionsMenuInstance = new OptionsMenu1(this);
                 try
                 {
-                    MachineConnector.SetRegisteredOI("mills888.actionworld", this.optionsMenuInstance);
+                    MachineConnector.SetRegisteredOI("mills888Formallizard.actionworld", this.optionsMenuInstance);
                 }
                 catch (Exception ex)
                 {
-                    Debug.Log($"Remix Menu Template examples: Hook_OnModsInit options failed init error {optionsMenuInstance}{ex}");
+                    Debug.Log($"Action world: Hook_OnModsInit options failed init error {optionsMenuInstance}{ex}");
                     Logger.LogError(ex);
-                    Logger.LogMessage("WHOOPS");
                 }
             }
-            /*vanila creature decipher XD
- * 1 : pink lizard
- * 2 : greenlizard
- * 3 : blue lizard
- * 4 : yellow lizard
- * 5 : white lizard
- * 6 : Red Lizard
- * 7 : black lizard
- * 8 : salamander
- * 9 : cyan lizard
- * 10 : vulture(exotic)
- * 11 : cicadaA
- * 12 : cicadaB
- * 13 : DLL
- * 14 : BLL
- * 15 : Red Centi
- * 16 : Big Spider
- * 17 : spitter spider
- * 18 : king vulter
- */
 
-
-        //    Enemies.Clear();
-      
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+     
 
 
 
@@ -204,7 +167,6 @@ namespace Action_World
             self.room.AddObject(new Explosion.ExplosionLight(vector, 280f, 1f, 7, explodeColor));
             self.room.AddObject(new Explosion.ExplosionLight(vector, 230f, 1f, 3, new Color(1f, 1f, 1f)));
             self.room.AddObject(new ExplosionSpikes(self.room, vector, 14, 30f, 9f, 7f, 170f, explodeColor));
-            //self.room.AddObject(new ShockWave(vector, 330f, 0.045f, 5, false));
 
             AbstractSpear abstractSpear = new AbstractSpear(self.room.world, null, Pos, self.room.game.GetNewID(), false);
              self.room.abstractRoom.AddEntity(abstractSpear);
@@ -257,7 +219,6 @@ namespace Action_World
 
             IntVector2 randomTile = GetRandomFreeTile(self.room, self);
             WorldCoordinate Pos = new WorldCoordinate(self.room.abstractRoom.index, randomTile.x, randomTile.y, -1);
-          //  self.room.AddObject(new ShockWave(new Vector2(randomTile.x, randomTile.y), 100f, 0.07f, 6, false));
           if(optionsMenuInstance.Spear.Value)
             {
                 spearReward(self, Pos);
@@ -394,12 +355,6 @@ namespace Action_World
                         {
                             lastRoom = self.room;
                         }
-                        /* if (((self.grasps[1] == null && (!(self.grasps[0] != null && self.grasps[0].grabbed is Spear))) || (self.grasps[0] == null && (!(self.grasps[1] != null && self.grasps[1].grabbed is Spear)))) && Random.Range(0, 100) == 1)
-                         {
-                           //  AbstractSpear ent = new AbstractSpear(self.room.world, null, self.abstractCreature.pos, self.room.game.GetNewID(), Random.Range(0, 10) == 0);
-                           //  ent.RealizeInRoom();
-                             //self.PickupPressed();
-                         }*/
 
                         musicPlayer = self.room.world.game.rainWorld.processManager.musicPlayer;
                         if (musicPlayer.song == null)
@@ -481,20 +436,10 @@ namespace Action_World
                         {
                             Enemies.Add(CreatureTemplate.Type.SpitterSpider);
                         }
-                        if (optionsMenuInstance.Centipede.Value)
-                        {
-                            Enemies.Add(CreatureTemplate.Type.Centipede);
-                        }
-                /*
-                 *         public readonly Configurable<bool> SpitLizard;
-public readonly Configurable<bool> EelLizard;
-public readonly Configurable<bool> MotherSpider;
-public readonly Configurable<bool> TLL;
-public readonly Configurable<bool> AquaCenti;
-public readonly Configurable<bool> ZoopLizard;
-public readonly Configurable<bool> TrainLizard;
-public readonly Configurable<bool> HLL;*/
-
+                if (optionsMenuInstance.Centipede.Value)
+                {
+                    Enemies.Add(CreatureTemplate.Type.Centipede);
+                }
                 //msc
                 if (optionsMenuInstance.SpitLizard.Value)
                 {
@@ -533,12 +478,7 @@ public readonly Configurable<bool> HLL;*/
 
 
 
-    //}
-    //catch (NullReferenceException ex)
-    //{
-      //  Debug.LogError($"NullReferenceException in PlayerUpdateHook: {ex}");
 
-    //}
 
 }
 }
@@ -549,7 +489,6 @@ public readonly Configurable<bool> HLL;*/
 
 public class OptionsMenu1 : OptionInterface
 {
-//  public static Configurable<bool> gourmandFlightActive;
 public OptionsMenu1(Main plugin)
 {
     //vanila
@@ -557,13 +496,13 @@ public OptionsMenu1(Main plugin)
     GreenLizard = this.config.Bind<bool>("GreenLizardConfig", true);
     BlueLizard = this.config.Bind<bool>("BlueLizardConfig", true);
     YellowLizard = this.config.Bind<bool>("YellowLizardConfig", true);
-    WhiteLizard = this.config.Bind<bool>("WhiteLizardConfig", false);
+    WhiteLizard = this.config.Bind<bool>("WhiteLizardConfig", true);
     RedLizard = this.config.Bind<bool>("RedLizardConfig", false);
     BlackLizard = this.config.Bind<bool>("BlackLizardConfig", false);
     Salamander = this.config.Bind<bool>("SalamanderConfig", false);
     CyanLizard = this.config.Bind<bool>("CyanLizardConfig", true);
     Spider = this.config.Bind<bool>("SpiderConfig", false);
-    DropBug = this.config.Bind<bool>("DropBugonfig", true);
+    DropBug = this.config.Bind<bool>("DropBugConfig", true);
     Centiwing = this.config.Bind<bool>("CentiwingConfig", true);
     DLL = this.config.Bind<bool>("DLLConfig", false);
     BLL = this.config.Bind<bool>("BLLConfig", false);
@@ -583,25 +522,22 @@ public OptionsMenu1(Main plugin)
     //reward
     Kama = this.config.Bind<bool>("KamaConfig", false);
     Food = this.config.Bind<bool>("FoodConfig", false);
-    Spear = this.config.Bind<bool>("SpearConfig", false);
+    Spear = this.config.Bind<bool>("SpearConfig", true);
 
 
-    //rewards
-    // Food = this.config.Bind<bool>("FoodConfig", true);
-    //   Karma = this.config.Bind<bool>("KarmaConfig", true);
+
 
 }
 public override void Initialize()
 {
     var opTab1 = new OpTab(this, "Default Canvas");
-    this.Tabs = new[] { opTab1 }; // Add the tabs into your list of tabs. If there is only a single tab, it will not show the flap on the side because there is not need to.
+    this.Tabs = new[] { opTab1 }; 
 
     // Tab 1
     OpContainer tab1Container = new OpContainer(new Vector2(0, 0));
     opTab1.AddItems(tab1Container);
-    // You can put sprites with effects in the Remix Menu by using an OpContainer
 
-    UIelement[] UIArrayElements = new UIelement[] // Labels in a fixed box size + alignment
+    UIelement[] UIArrayElements = new UIelement[]
     {
     new OpCheckBox(PinkLizard, 25f, 500f),
     new OpLabel(25f, 550f, "Pink Lizard"),
@@ -663,7 +599,7 @@ public override void Initialize()
 
     //break
 
-    new OpLabel(250f, 250f, "Msc Config and easier settings"),
+    new OpLabel(230f, 250f, "Msc Config and easier settings"),
 
     //break
 
@@ -671,10 +607,10 @@ public override void Initialize()
     new OpLabel(25, 150f, "Spit lizard"),
 
     new OpCheckBox(EelLizard, 100, 100f),
-    new OpLabel(100, 150f, "Eellizard"),
+    new OpLabel(90f, 150f, "Eellizard"),
 
     new OpCheckBox(MotherSpider, 175, 100f),
-    new OpLabel(175, 150f, "Mother Spi"),
+    new OpLabel(150, 150f, "Mother Spider"),
 
     new OpCheckBox(TLL, 250, 100f),
     new OpLabel(250, 150f, "TLL"),
@@ -691,43 +627,27 @@ public override void Initialize()
     new OpCheckBox(HLL, 100, 10f),
     new OpLabel(100, 50f, "HLL"),
 
-    //rewards not new line break XD
+    //rewards not new line break
 
-    new OpCheckBox(Kama, 165, 10f),
-    new OpLabel(135, 50f, "Karmic reward"),
+    new OpCheckBox(Kama, 165, 5f),
+    new OpLabel(135, 40f, "Karmic reward"),
 
-    new OpCheckBox(Food, 250, 10f),
-    new OpLabel(250, 50f, "food reward"),
+    new OpCheckBox(Food, 250, 5f),
+    new OpLabel(250, 40f, "food reward"),
 
-    new OpCheckBox(Spear, 325, 10f),
-    new OpLabel(325, 50f, "SPEARS"),
-
-
+    new OpCheckBox(Spear, 325, 5f),
+    new OpLabel(325, 40f, "SPEARS"),
 
 
-//        new OpLabel(250f, 250f, "rewards"),
-
-//          new OpCheckBox(Karma, 125f, 150f),
-//            new OpLabel(125f, 200f, "karmic reward"),
-
-  //  new OpCheckBox(Food, 375f, 150f),
-    //new OpLabel(375f, 200f, "Food reward"),
 
 
 
     };
     opTab1.AddItems(UIArrayElements);
 
-    /*  UIelement[] UIArrayElements2 = new UIelement[] //create an array of ui elements
-      {
-          //new OpSlider(testFloatSlider, new Vector2(50, 400), 100){max = 100, hideLabel = false}, // Using "hideLabel = true" makes the number disappear but the shadow of where the number would be still appears, why lol.
-
-      };*/
+  
             }
 
-        // Configurable values. They are bound to the config in constructor, and then passed to UI elements.
-        // They will contain values set in the menu. And to fetch them in your code use their NAME.Value. For example to get the boolean testCheckBox.Value, to get the integer testSlider.Value
-        //public readonly Configurable<TYPE> NAME;
         //vanila creature list
         public readonly Configurable<bool> PinkLizard;
         public readonly Configurable<bool> GreenLizard;
@@ -766,33 +686,9 @@ public override void Initialize()
 
 
 
-        /*  public readonly Configurable<bool> Food;
-          public readonly Configurable<bool> Karma;*/
-        //MSC list
+
     }
 
 
 }
 
-
-
-/*vanila creature decipher XD
- * 1 : pink lizard
- * 2 : greenlizard
- * 3 : blue lizard
- * 4 : yellow lizard
- * 5 : white lizard
- * 6 : Red Lizard
- * 7 : black lizard
- * 8 : salamander
- * 9 : cyan lizard
- * 10 : vulture(exotic)
- * 11 : cicadaA
- * 12 : cicadaB
- * 13 : DLL
- * 14 : BLL
- * 15 : Red Centi
- * 16 : Big Spider
- * 17 : spitter spider
- * 18 : king vulter
- */
